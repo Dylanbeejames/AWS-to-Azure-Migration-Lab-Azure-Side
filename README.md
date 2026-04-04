@@ -1,6 +1,3 @@
-# AWS-to-Azure-Migration-Lab-Azure-Side
-
-Here’s the final version:
 
 # AWS-to-Azure Migration Lab - Azure Side
 
@@ -24,25 +21,34 @@ mkdir aws-to-azure-migrate
 cd aws-to-azure-migrate
 mkdir azure-side aws-side
 cd azure-side
+
+
+⸻
+
 Step 2: Generate SSH Key
 
 Generate an SSH key for connecting to the VM:
-
 ssh-keygen -t rsa -b 2048
+
 Save to: C:\Users\17576\.ssh\id_rsa
-Leave passphrase empty for lab purposes.
+	•	Leave passphrase empty for lab purposes.
 
 Result: Two files are created:
+	•	C:\Users\17576\.ssh\id_rsa (private key)
+	•	C:\Users\17576\.ssh\id_rsa.pub (public key)
 
-C:\Users\17576\.ssh\id_rsa (private key)
-C:\Users\17576\.ssh\id_rsa.pub (public key)
+⸻
+
 Step 3: Create Terraform Configuration Files
+
 variables.tf
 variable "resource_group_name" {}
 variable "location" {}
+
 terraform.tfvars
 resource_group_name = "my-azure-lab-rg"
 location            = "eastus"
+
 main.tf
 provider "azurerm" {
   features {}
@@ -132,42 +138,70 @@ output "vnet_name" {
 output "public_ip" {
   value = azurerm_public_ip.pip.ip_address
 }
+
+
+⸻
+
 Step 4: Run Terraform Commands
 terraform init
 terraform plan
 terraform apply
+
 Confirm resource creation by typing yes.
 
 Example Output:
-
 resource_group_location = "eastus"
 resource_group_name     = "my-azure-lab-rg"
 vm_name                 = "myVM"
 vnet_name                = "myVnet"
 public_ip               = "13.68.145.247"
+
+
+⸻
+
 Step 5: Connect to the Linux VM
 ssh -i C:\Users\17576\.ssh\id_rsa azureuser@13.68.145.247
-Accept the host fingerprint by typing yes.
-You will be logged in using your SSH public key.
+
+•	Accept the host fingerprint by typing yes.
+	•	You will be logged in using your SSH public key.
 
 Note: Replace 13.68.145.247 with the actual public IP from Terraform output.
+
+⸻
 
 Step 6: Lab Completion
 
 The following resources were successfully deployed:
 
-Resource Type	Name	Resource Group
-Resource Group	my-azure-lab-rg	my-azure-lab-rg
-Virtual Network	myVnet	my-azure-lab-rg
-Subnet	mySubnet	my-azure-lab-rg
-Network Interface	myNic	my-azure-lab-rg
-Public IP	13.68.145.247	my-azure-lab-rg
-Linux VM	myVM	my-azure-lab-rg
+Resource Type
+Name
+Resource Group
+Resource Group
+my-azure-lab-rg
+my-azure-lab-rg
+Virtual Network
+myVnet
+my-azure-lab-rg
+Subnet
+mySubnet
+my-azure-lab-rg
+Network Interface
+myNic
+my-azure-lab-rg
+Public IP
+13.68.145.247
+my-azure-lab-rg
+Linux VM
+myVM
+my-azure-lab-rg
 
-✅ Verified SSH login to the VM
+Verified SSH login to the VM
 ✅ Lab environment fully operational
 
+⸻
+
 Notes
-Paths must match where you generated your SSH keys.
-Terraform tfvars file can be reused for additional environments.
-Check outputs after terraform apply to see your VM public IP.
+	•	Paths must match where you generated your SSH keys.
+	•	Terraform tfvars file can be reused for additional environments.
+	•	Check outputs after terraform apply to see your VM public IP.
+
