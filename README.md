@@ -1,3 +1,6 @@
+Watch Me Do The Lab HERE
+
+https://www.loom.com/share/a8790388210245a198ff64b1d3d2154d
 
 # AWS-to-Azure Migration Lab – Azure Side
 
